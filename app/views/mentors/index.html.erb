@@ -1,0 +1,4 @@
+<h3>メンター覧</h3>
+<% @mentors.each do |mentor| %>
+    <%= link_to "ユーザ名：#{mentor.name}", mentor_path(mentor.id) %>
+<% end %>
