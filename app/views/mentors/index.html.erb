@@ -2,3 +2,5 @@
 <% @mentors.each do |mentor| %>
     <%= link_to "ユーザ名：#{mentor.name}", mentor_path(mentor.id) %>
 <% end %>
+
+<%= link_to "ログアウト", destroy_mentor_session_path, method: :delete %>

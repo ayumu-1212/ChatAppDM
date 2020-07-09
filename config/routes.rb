@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
+  devise_for :mentors
+  
   resources :mentors
   resources :rooms
 
-  root 'users#index'
+  root 'mentors#index'
 end
