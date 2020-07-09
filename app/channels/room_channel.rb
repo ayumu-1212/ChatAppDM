@@ -9,6 +9,6 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    DirectMessage.create! message: data['direct_message'], user_id: current_mentor.id, room_id: params['room']
+    DirectMessage.create! content: data['direct_message'], mentor_id: current_mentor.id, room_id: params['room']
   end
 end

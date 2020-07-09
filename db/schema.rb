@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_071001) do
   create_table "direct_messages", force: :cascade do |t|
     t.integer "mentor_id"
     t.integer "room_id"
-    t.string "name"
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["mentor_id"], name: "index_direct_messages_on_mentor_id"

@@ -8,7 +8,7 @@ module ApplicationCable
 
     protected
     def find_verified_mentor
-      verified_mentor = Mentor.find_by(id: env['warden'].mentor.id)
+      verified_mentor = Mentor.find_by(id: env['warden'].user.id)
       return reject_unauthorized_connection unless verified_mentor
       verified_mentor
     end
