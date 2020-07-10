@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_071001) do
+ActiveRecord::Schema.define(version: 2020_07_09_174828) do
 
   create_table "direct_messages", force: :cascade do |t|
     t.integer "mentor_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_071001) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "student_id"
     t.index ["mentor_id"], name: "index_direct_messages_on_mentor_id"
     t.index ["room_id"], name: "index_direct_messages_on_room_id"
   end
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_071001) do
     t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "student_id"
     t.index ["mentor_id"], name: "index_entries_on_mentor_id"
     t.index ["room_id"], name: "index_entries_on_room_id"
   end
@@ -48,6 +50,19 @@ ActiveRecord::Schema.define(version: 2020_07_09_071001) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_students_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
 end

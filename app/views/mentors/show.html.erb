@@ -2,15 +2,19 @@
 <h2><%= @mentor.name %></h2>
 <h2><%= @mentor.email %></h2>
 
-<% unless @mentor.id == current_mentor.id %>
-  <% if @isRoom == true %>
-    <%= link_to "チャットへGo!", room_path(@roomId) %>
-  <% else %>
-    <%= form_for @room do |f| %>
-      <%= fields_for @entry do |e| %>
-        <%= e.hidden_field :mentor_id, :value=> @mentor.id %>
+<% if mentor_signed_in? %>
+  <% unless @mentor.id == current_mentor.id %>
+    <% if @isRoom == true %>
+      <%= link_to "チャットへGo!", room_path(@roomId) %>
+    <% else %>
+      <%= form_for @room do |f| %>
+        <%= fields_for @entry do |e| %>
+          <%= e.hidden_field :mentor_id, :value=> @mentor.id %>
+        <% end %>
+        <%= f.submit "チャットを始める" %>
       <% end %>
-      <%= f.submit "チャットを始める" %>
     <% end %>
   <% end %>
 <% end %>
+
+<%= link_to "チャットへGo!", room_path(6) %>

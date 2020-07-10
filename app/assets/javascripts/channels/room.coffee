@@ -6,9 +6,12 @@ document.addEventListener 'turbolinks:load', ->
 
     received: (data) ->
       $('#direct_messages').append data['direct_message']
+      document.getElementById('chat-input-form').value = ''
+      return
 
     speak: (direct_message) ->
-      @perform 'speak', direct_message: direct_message
+      @perform 'speak', 
+        direct_message: direct_message
 
   $('#chat-input').on 'keypress', (event) ->
     if event.keyCode is 13

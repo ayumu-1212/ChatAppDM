@@ -1,9 +1,11 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_mentor!
   def show
     @room = Room.find(params[:id])
     #present?の戻り値は真偽値。よって、trueの場合、
-    if Entry.where(:mentor_id => current_mentor.id, :room_id => @room.id).present?
+    if mentor_signed_in? && Entry.where(:mentor_id => current_mentor.id, :room_id => @room.id).present?
+      @direct_messages = @room.direct_messages
+      @entries = @room.entries
+    elsif student_signed_in? && Entry.where(:student_id => current_student.id, :room_id => @room.id).present?
       @direct_messages = @room.direct_messages
       @entries = @room.entries
     else
